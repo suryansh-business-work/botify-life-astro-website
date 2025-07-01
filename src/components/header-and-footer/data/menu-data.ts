@@ -13,19 +13,19 @@ export const menuData: MenuItem[] = [
     children: [
       {
         name: "MCP Servers",
-        href: "#",
+        href: "/products/mcp-servers",
         description: "All about our MCP Servers",
         icon: "fa-solid fa-chart-pie",
       },
       {
         name: "Agents",
-        href: "#",
+        href: "/products/agents",
         description: "Meet our expert Agents",
         icon: "fa-solid fa-bolt",
       },
       {
         name: "Bots",
-        href: "#",
+        href: "/products/bots",
         description: "Discover our advanced Bots",
         icon: "fa-solid fa-shield-halved",
       }
