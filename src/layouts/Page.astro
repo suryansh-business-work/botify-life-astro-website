@@ -4,6 +4,7 @@ import Header from "../components/header-and-footer/Header.astro";
 import DynamicBreadcrumb from "../components/dynamic-components/DynamicBreadcrumb.astro";
 import "./../styles/global.css";
 import "./../styles/global.scss";
+import NewsletterSection from "../components/NewsletterSection.astro";
 
 const {
 	title = "Botify Life",
@@ -36,6 +37,7 @@ const {
 			<DynamicBreadcrumb url={pageUrl} />
 			<slot />
 		</main>
+		<NewsletterSection />
 		<Footer />
 	</body>
 </html>

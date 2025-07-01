@@ -8,7 +8,7 @@ export interface MenuItem {
 
 export const menuData: MenuItem[] = [
   {
-    name: "Product",
+    name: "Products",
     href: "#",
     children: [
       {
@@ -51,7 +51,7 @@ export const menuData: MenuItem[] = [
 
 export const footerMenuData: MenuItem[] = [
   {
-    name: "Product",
+    name: "Products",
     href: "#",
     children: [
       {
