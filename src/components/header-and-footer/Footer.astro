@@ -1,17 +1,108 @@
-<footer class="w-full bg-gray-900 border-t border-gray-800 mt-12">
-  <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2">
-      <img src="./botify-logo-light.svg" alt="Botify Life Logo" class="h-8 w-auto" />
+---
+import { footerMenuData } from "./data/menu-data";
+---
+
+<footer
+  class="w-full bg-gray-900 border-t border-gray-800 mt-12"
+  aria-labelledby="footer-heading"
+>
+  <h2 id="footer-heading" class="sr-only">Footer</h2>
+  <div class="max-w-7xl mx-auto px-4 py-16 space-y-12">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div>
+        <img
+          src="./botify-logo-light.svg"
+          alt="Botify Life Logo"
+          class="h-10 mb-4"
+        />
+        <p class="max-w-xs text-gray-400">
+          Botify Life empowers you to automate, create, and earn with AI-powered MCP servers and agents. Build your own bots, improve your workflow, and even sell your creations on our platform.
+        </p>
+        <ul class="mt-8 flex gap-6">
+          <li>
+            <a
+              href="#"
+              rel="noreferrer"
+              target="_blank"
+              class="text-gray-400 hover:text-indigo-400 transition"
+              aria-label="Facebook"
+            >
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              rel="noreferrer"
+              target="_blank"
+              class="text-gray-400 hover:text-indigo-400 transition"
+              aria-label="Instagram"
+            >
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              rel="noreferrer"
+              target="_blank"
+              class="text-gray-400 hover:text-indigo-400 transition"
+              aria-label="Twitter"
+            >
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              rel="noreferrer"
+              target="_blank"
+              class="text-gray-400 hover:text-indigo-400 transition"
+              aria-label="GitHub"
+            >
+              <i class="fab fa-github text-xl"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <nav
+        class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 lg:col-span-2"
+        aria-label="Footer Navigation"
+      >
+        {
+          footerMenuData.map((item) =>
+            item.children ? (
+              <div>
+                <h3 class="font-semibold text-gray-200 mb-3">{item.name}</h3>
+                <ul class="space-y-2">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class="text-gray-300 block rounded px-2 py-1 transition-colors hover:text-indigo-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                      >
+                        {child.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <div>
+                <a
+                  href={item.href}
+                  class="text-gray-300 block font-semibold mb-3 rounded px-2 py-1 transition-colors hover:text-indigo-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                >
+                  {item.name}
+                </a>
+              </div>
+            ),
+          )
+        }
+      </nav>
     </div>
-    <div class="flex gap-6 text-gray-400 text-sm">
-      <a href="/" class="hover:text-indigo-400">Home</a>
-      <a href="/about" class="hover:text-indigo-400">About Us</a>
-      <a href="/contact" class="hover:text-indigo-400">Contact Us</a>
-      <a href="/mcp-servers" class="hover:text-indigo-400">MCP Servers</a>
-      <a href="/agents" class="hover:text-indigo-400">Agents</a>
-    </div>
-    <div class="text-gray-500 text-xs text-center md:text-right">
-      &copy; {new Date().getFullYear()} Botify Life. All rights reserved.
+    <div class="w-full text-gray-500 text-xs text-center border-t border-gray-800 pt-8">
+      &copy; {new Date().getFullYear()} Botify Life. All rights reserved. Create and sell your MCP servers and agents – earn more, we only charge 20% commission.
     </div>
   </div>
 </footer>

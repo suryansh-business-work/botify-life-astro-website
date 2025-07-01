@@ -1,0 +1,208 @@
+---
+import Page from "../layouts/Page.astro";
+
+const {
+  title = "Pricing | Botify Life",
+  description = "Flexible pricing plans for every stage. Choose the plan that fits your needs and start improving your lifestyle with Botify Life.",
+  image = "/favicon.svg",
+} = Astro.props;
+
+// Helper to calculate yearly price with discount
+function getYearly(monthly: number, yearly: number, discount: number) {
+  if (typeof monthly === "number" && discount) {
+    return Math.round(monthly * 12 * (1 - discount));
+  }
+  return yearly;
+}
+
+const YEARLY_DISCOUNT = 0.2;
+
+const plans = [
+  {
+    name: "Basic",
+    monthly: 5,
+    yearly: getYearly(5, 50, YEARLY_DISCOUNT), // 5*12*0.8 = 48
+    features: [
+      "5 MCP Servers with unlimed tools",
+      "5 Agents",
+      "Unlimed Bots",
+      "Email Support",
+      "LLM usage: Pay per token or use your own API key",
+    ],
+    cta: "Choose Basic",
+    discount: YEARLY_DISCOUNT,
+  },
+  {
+    name: "Pro",
+    monthly: 10,
+    yearly: getYearly(10, 100, YEARLY_DISCOUNT), // 10*12*0.8 = 96
+    features: [
+      "20 MCP Servers with unlimed tools",
+      "20 Agents",
+      "Unlimed Bots",
+      "Email Support",
+      "LLM usage: Pay per token or use your own API key",
+    ],
+    cta: "Choose Pro",
+    highlight: true,
+    discount: YEARLY_DISCOUNT,
+  },
+  {
+    name: "Enterprise",
+    monthly: "Custom",
+    yearly: "Custom",
+    features: [
+      "Unlimited Projects",
+      "Unlimited Storage",
+      "24/7 Support",
+      "Dedicated Manager",
+      "LLM usage: Pay per token or use your own API key",
+    ],
+    cta: "Contact Sales",
+  },
+];
+---
+
+<Page title={title} description={description} image={image} pageUrl="/pricing">
+  <main class="bg-gradient-to-b from-indigo-50 to-white min-h-screen py-16 px-4 pt-24">
+    <section class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-extrabold text-center text-gray-900 mb-3 tracking-tight">
+        Pricing Plans
+      </h1>
+      <p class="text-center text-gray-600 mb-12 text-lg">{description}</p>
+      <div
+        class="flex justify-center mb-10"
+        role="tablist"
+        aria-label="Pricing toggle"
+      >
+        <button
+          id="monthly-btn"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="pricing-table"
+          tabindex="0"
+          class="cursor-pointer px-6 py-2 rounded-l-lg border border-indigo-600 font-semibold bg-indigo-600 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 text-base shadow-sm"
+        >
+          Monthly
+        </button>
+        <button
+          id="yearly-btn"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="pricing-table"
+          tabindex="-1"
+          class="cursor-pointer px-6 py-2 rounded-r-lg border border-indigo-600 font-semibold bg-white text-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 text-base shadow-sm"
+        >
+          Yearly
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="pricing-table">
+        {
+          plans.map((plan, idx) => (
+            <div
+              class={`w-full max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center border transition-transform duration-200 hover:scale-[1.03] ${plan.highlight ? "border-2 border-indigo-600 scale-105 shadow-2xl" : "border-gray-100"}`}
+            >
+              <h2 class="text-2xl font-bold mb-2 text-gray-900 tracking-tight">{plan.name}</h2>
+              <p
+                class="text-5xl font-extrabold text-indigo-600 mb-2 price"
+                data-monthly={plan.monthly}
+                data-yearly={plan.yearly}
+              >
+                {plan.monthly === "Custom" ? "Custom" : `$${plan.monthly}`}
+                <span class="text-base font-normal duration">/mo</span>
+              </p>
+              {plan.discount && (
+                <div class="hidden yearly-discount text-xs text-green-600 font-semibold mb-2">
+                  Save {Math.round(plan.discount * 100)}% with yearly billing!
+                </div>
+              )}
+              <ul class="text-gray-700 mb-8 space-y-3 text-center w-full">
+                {plan.features.map((feature) => (
+                  <li class="flex items-center gap-2 justify-center">
+                    <span class="text-green-500 text-lg">✔️</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#"
+                class="mt-auto w-full text-center bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-50 hover:text-indigo-700 cursor-pointer transition border border-indigo-600 shadow focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                aria-label={plan.cta + " Plan"}
+              >
+                {plan.cta}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const monthlyBtn = document.getElementById("monthly-btn");
+      const yearlyBtn = document.getElementById("yearly-btn");
+      const prices = document.querySelectorAll(".price");
+      const discounts = document.querySelectorAll(".yearly-discount");
+
+      function setActive(isMonthly) {
+        if (isMonthly) {
+          monthlyBtn.setAttribute("aria-selected", "true");
+          monthlyBtn.setAttribute("tabindex", "0");
+          monthlyBtn.classList.add("bg-indigo-600", "text-white");
+          monthlyBtn.classList.remove("bg-white", "text-indigo-600");
+          yearlyBtn.setAttribute("aria-selected", "false");
+          yearlyBtn.setAttribute("tabindex", "-1");
+          yearlyBtn.classList.remove("bg-indigo-600", "text-white");
+          yearlyBtn.classList.add("bg-white", "text-indigo-600");
+          discounts.forEach((el) => el.classList.add("hidden"));
+        } else {
+          yearlyBtn.setAttribute("aria-selected", "true");
+          yearlyBtn.setAttribute("tabindex", "0");
+          yearlyBtn.classList.add("bg-indigo-600", "text-white");
+          yearlyBtn.classList.remove("bg-white", "text-indigo-600");
+          monthlyBtn.setAttribute("aria-selected", "false");
+          monthlyBtn.setAttribute("tabindex", "-1");
+          monthlyBtn.classList.remove("bg-indigo-600", "text-white");
+          monthlyBtn.classList.add("bg-white", "text-indigo-600");
+          discounts.forEach((el) => el.classList.remove("hidden"));
+        }
+      }
+
+      monthlyBtn.addEventListener("click", () => {
+        setActive(true);
+        prices.forEach((el) => {
+          const val = el.getAttribute("data-monthly");
+          el.innerHTML =
+            val === "Custom"
+              ? "Custom<span class='text-base font-normal duration'>/mo</span>"
+              : `$${val}<span class='text-base font-normal duration'>/mo</span>`;
+        });
+      });
+
+      yearlyBtn.addEventListener("click", () => {
+        setActive(false);
+        prices.forEach((el) => {
+          const val = el.getAttribute("data-yearly");
+          el.innerHTML =
+            val === "Custom"
+              ? "Custom<span class='text-base font-normal duration'>/yr</span>"
+              : `$${val}<span class='text-base font-normal duration'>/yr</span>`;
+        });
+      });
+
+      // Keyboard accessibility for toggle
+      [monthlyBtn, yearlyBtn].forEach((btn, idx, arr) => {
+        btn.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+            e.preventDefault();
+            const next = arr[(idx + 1) % arr.length];
+            next.focus();
+            next.click();
+          }
+        });
+      });
+    });
+  </script>
+</Page>

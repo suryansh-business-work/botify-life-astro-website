@@ -1,13 +1,15 @@
 ---
 import Footer from "../components/header-and-footer/Footer.astro";
 import Header from "../components/header-and-footer/Header.astro";
-import './../styles/global.css';
-import './../styles/global.scss';
+import DynamicBreadcrumb from "../components/dynamic-components/DynamicBreadcrumb.astro";
+import "./../styles/global.css";
+import "./../styles/global.scss";
 
 const {
 	title = "Botify Life",
 	description = "Create a bot that helps you improve your lifestyle (Improve)",
 	image = "/favicon.svg",
+	pageUrl="/"
 } = Astro.props;
 ---
 
@@ -30,7 +32,10 @@ const {
 	</head>
 	<body>
 		<Header />
-		<slot />
+		<main class="pt-16">
+			<DynamicBreadcrumb url={pageUrl} />
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>

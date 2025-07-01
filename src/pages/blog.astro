@@ -1,0 +1,105 @@
+---
+import Page from "../layouts/Page.astro";
+
+const posts = [
+  {
+    title: "How to position your furniture for positivity",
+    date: "2022-10-10",
+    displayDate: "10th Oct 2022",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
+    excerpt:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque dignissimos. Molestias explicabo corporis voluptatem?",
+  },
+  {
+    title: "Getting Started with MCP Server: The Future of Model Context Protocol",
+    date: "2025-06-20",
+    displayDate: "20th Jun 2025",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
+    excerpt:
+      "Learn what MCP Server is, how Model Context Protocol is revolutionizing AI infrastructure, and how you can deploy your own MCP server for scalable, secure, and modular AI workflows.",
+  },
+  {
+    title: "Building Smart Agents: Automate Your Workflow with AI",
+    date: "2025-05-10",
+    displayDate: "10th May 2025",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    excerpt:
+      "Discover how to create, train, and deploy intelligent agents that can automate repetitive tasks, interact with users, and integrate seamlessly with your MCP server.",
+  },
+  {
+    title: "Bots vs. Agents: What’s the Difference and When to Use Each?",
+    date: "2025-04-15",
+    displayDate: "15th Apr 2025",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    excerpt:
+      "Explore the key differences between bots and agents in the context of AI automation. Learn which is best for your use case and how to leverage both for maximum productivity.",
+  },
+  {
+    title: "Fine-Tuning LLMs for Your Business Needs",
+    date: "2025-03-01",
+    displayDate: "1st Mar 2025",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+    excerpt:
+      "Unlock the full potential of Large Language Models (LLMs) by fine-tuning them for your specific business requirements. Step-by-step guide for beginners and pros alike.",
+  },
+  {
+    title: "Integrating LLMs with MCP Server: A Practical Guide",
+    date: "2025-02-10",
+    displayDate: "10th Feb 2025",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80",
+    excerpt:
+      "Learn how to connect and manage Large Language Models within your MCP Server setup. Tips, best practices, and sample code for seamless integration.",
+  },
+];
+---
+
+<Page title="Blog | Botify Life" description="Read the latest articles, tips, and updates from Botify Life." pageUrl="/blog">
+  <main class="bg-gradient-to-b from-indigo-50 to-white min-h-screen pt-20 pb-12 px-4">
+    <section class="max-w-6xl mx-auto">
+      <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Blog</h1>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-xs flex flex-col h-full">
+            <img
+              alt=""
+              src={post.image}
+              class="w-full object-cover"
+              style="height:250px;"
+            />
+            <div class="p-4 sm:p-6 flex flex-col flex-1">
+              <a href={post.href}>
+                <h3 class="text-lg font-medium text-gray-900">
+                  {post.title}
+                </h3>
+              </a>
+              <time datetime={post.date} class="block text-xs text-gray-400 mt-1">
+                {post.displayDate}
+              </time>
+              <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+                {post.excerpt}
+              </p>
+              <a href={post.href} class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                Find out more
+                <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+                  &rarr;
+                </span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</Page>

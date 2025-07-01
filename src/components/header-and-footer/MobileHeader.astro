@@ -1,128 +1,143 @@
-<div class="lg:hidden" role="dialog" aria-modal="true">
-  <!-- Background backdrop, show/hide based on slide-over state. -->
-  <div class="fixed inset-0 z-50"></div>
-  <div
-    class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-  >
-    <div class="flex items-center justify-between">
-      <a href="#" class="-m-1.5 p-1.5">
-        <span class="sr-only">Your Company</span>
-        <img
-          class="h-8 w-auto"
-          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-          alt=""
-        />
-      </a>
-      <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-        <span class="sr-only">Close menu</span>
-        <svg
-          class="size-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-    <div class="mt-6 flow-root">
-      <div class="-my-6 divide-y divide-gray-500/10">
-        <div class="space-y-2 py-6">
-          <div class="-mx-3">
-            <button
-              type="button"
-              class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-              aria-controls="products"
-              aria-expanded="false"
-            >
-              Product
-              <!--
-                  Expand/collapse icon, toggle classes based on menu open state.
+---
+import { menuData } from "./data/menu-data";
+---
 
-                  Open: "rotate-180", Closed: ""
-                -->
-              <svg
-                class="size-5 flex-none"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-                  clip-rule="evenodd"></path>
-              </svg>
-            </button>
-            <!-- 'Product' sub-menu, show/hide based on menu state. -->
-            <div class="mt-2 space-y-2" id="products">
+<div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 z-200 hidden">
+    <!-- Backdrop -->
+    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/30"></div>
+    <div
+      class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+    >
+      <div class="flex items-center justify-between">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Botify.life</span>
+          <img
+            src="./botify-logo-dark.svg"
+            alt="Botify Life Logo"
+            class="h-10 mr-3"
+            style="width: 120px;"
+          />
+        </a>
+        <button
+          id="mobile-menu-close"
+          type="button"
+          class="cursor-pointer -m-2.5 rounded-md p-2.5 text-gray-700"
+        >
+          <span class="sr-only">Close menu</span>
+          <svg
+            class="size-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-gray-500/10">
+          <div class="space-y-2 py-6">
+            {menuData.map((item, idx) => item.children ? (
+              <div>
+                <button
+                  type="button"
+                  class="items-center cursor-pointer flex w-full rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  aria-controls={`submenu-${idx}`}
+                  aria-expanded="false"
+                  id={`submenu-toggle-${idx}`}
+                >
+                  {item.icon && <i class={item.icon + " mr-2"}></i>}
+                  {item.name}
+                  <svg
+                    class="size-5 flex-none transition-transform"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    data-slot="icon"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </button>
+                <div class="mt-2 space-y-2 hidden" id={`submenu-${idx}`}>
+                  {item.children.map(child => (
+                    <a
+                      href={child.href}
+                      class="cursor-pointer block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-200 hover:w-full hover:no-underline hover:no-underline"
+                      style="display: block;"
+                    >
+                      {child.icon && <i class={child.icon + " mr-2"}></i>}
+                      {child.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
               <a
-                href="#"
-                class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >Analytics</a
+                href={item.href}
+                class="block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 no-underline hover:no-underline"
               >
-              <a
-                href="#"
-                class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >Engagement</a
-              >
-              <a
-                href="#"
-                class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >Security</a
-              >
-              <a
-                href="#"
-                class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >Integrations</a
-              >
-              <a
-                href="#"
-                class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >Automations</a
-              >
-              <a
-                href="#"
-                class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >Watch demo</a
-              >
-              <a
-                href="#"
-                class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >Contact sales</a
-              >
-            </div>
+                {item.icon && <i class={item.icon + " mr-2"}></i>}
+                {item.name}
+              </a>
+            ))}
           </div>
-          <a
-            href="#"
-            class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-            >Features</a
-          >
-          <a
-            href="#"
-            class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-            >Marketplace</a
-          >
-          <a
-            href="#"
-            class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-            >Company</a
-          >
-        </div>
-        <div class="py-6">
-          <a
-            href="#"
-            class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-            >Log in</a
-          >
+          <div class="py-6">
+            <a
+              href="#"
+              class="block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 no-underline hover:no-underline"
+            >Log in</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menu = document.getElementById("mobile-menu");
+    const openBtn = document.getElementById("mobile-menu-open");
+    const closeBtn = document.getElementById("mobile-menu-close");
+    const backdrop = document.getElementById("mobile-menu-backdrop");
+
+    if (openBtn && menu) {
+      openBtn.addEventListener("click", () => {
+        menu.classList.remove("hidden");
+      });
+    }
+    if (closeBtn && menu) {
+      closeBtn.addEventListener("click", () => {
+        menu.classList.add("hidden");
+      });
+    }
+    if (backdrop && menu) {
+      backdrop.addEventListener("click", () => {
+        menu.classList.add("hidden");
+      });
+    }
+
+    // Submenu open/close logic
+    document.querySelectorAll('[id^="submenu-toggle-"]').forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const idx = this.id.replace("submenu-toggle-", "");
+        const submenu = document.getElementById(`submenu-${idx}`);
+        const expanded = this.getAttribute("aria-expanded") === "true";
+        this.setAttribute("aria-expanded", !expanded);
+        submenu.classList.toggle("hidden");
+        // Rotate arrow
+        const arrow = this.querySelector("svg");
+        if (arrow) arrow.classList.toggle("rotate-180");
+      });
+    });
+  });
+</script>
