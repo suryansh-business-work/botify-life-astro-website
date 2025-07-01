@@ -1,9 +1,151 @@
 ---
-import Page from '../layouts/Page.astro';
+import HomeBanner from "../components/banners/HomeBanner.astro";
+import Page from "../layouts/Page.astro";
 ---
 
 <Page>
-	<h1>Welcome to My Astro Page</h1>
-	<p>This is a simple example of an Astro page using a custom layout.</p>
-	<p>Feel free to explore and modify the content!</p>
+	<HomeBanner />
+	<section
+		class="w-screen py-16 bg-white flex flex-col items-center justify-center"
+	>
+		<div class="max-w-4xl w-full px-6 mx-auto">
+			<h2
+				class="text-3xl md:text-4xl font-bold text-center mb-8"
+				style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif'; color: #22223b;"
+			>
+				Compatible <span class="text-blue-600 font-bold">LLMs</span>
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div
+					class="flex flex-col items-center bg-[#f6fafd] rounded-2xl shadow p-8"
+				>
+					<img
+						src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg"
+						alt="OpenAI"
+						class="w-16 h-16 mb-4 rounded-xl object-contain bg-white p-2"
+					/>
+					<h3
+						class="text-xl font-semibold mb-2"
+						style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif'; color: #22223b;"
+					>
+						OpenAI
+					</h3>
+					<p
+						class="text-gray-600 text-center"
+						style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif';"
+					>
+						Integrate with GPT-4, GPT-3.5 and more for advanced language tasks.
+					</p>
+				</div>
+				<div
+					class="flex flex-col items-center bg-[#f6fafd] rounded-2xl shadow p-8"
+				>
+					<span
+						class="material-symbols-rounded text-blue-600 text-5xl mb-4"
+						style="font-size: 3.5rem;">auto_awesome</span
+					>
+					<h3
+						class="text-xl font-semibold mb-2"
+						style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif'; color: #22223b;"
+					>
+						Gemini
+					</h3>
+					<p
+						class="text-gray-600 text-center"
+						style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif';"
+					>
+						Google's Gemini for powerful, multi-modal AI experiences.
+					</p>
+				</div>
+				<div
+					class="flex flex-col items-center bg-[#f6fafd] rounded-2xl shadow p-8"
+				>
+					<img
+						src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/anthropic.svg"
+						alt="Claude"
+						class="w-16 h-16 mb-4 rounded-xl object-contain bg-white p-2"
+					/>
+					<h3
+						class="text-xl font-semibold mb-2"
+						style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif'; color: #22223b;"
+					>
+						Claude
+					</h3>
+					<p
+						class="text-gray-600 text-center"
+						style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif';"
+					>
+						Anthropic Claude for safe, reliable, and ethical AI automation.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="w-screen bg-[#f6fafd] py-16 flex flex-col items-center justify-center">
+		<h2
+			class="text-3xl md:text-6xl font-bold text-center mb-20"
+			style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif'; color: #22223b;"
+		>
+			Botify saves up to{" "}
+			<span class="text-blue-600 font-bold">120</span> hours per user/year
+		</h2>
+		<div class="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-0 w-full max-w-5xl">
+			<div class="flex-1 flex flex-col items-center px-6 border-b md:border-b-0 md:border-r border-blue-100 last:border-none">
+				<span class="text-4xl md:text-5xl font-bold text-blue-600 mb-2"
+					>95%</span
+				>
+				<span class="text-base text-gray-800 text-center mb-1 font-medium"
+					>Botify adoption reached 95% in just 1 year.</span
+				>
+			</div>
+			<div class="flex-1 flex flex-col items-center px-6 border-b md:border-b-0 md:border-r border-blue-100 last:border-none">
+				<span class="text-4xl md:text-5xl font-bold text-blue-600 mb-2">40</span>
+				<span class="text-base text-gray-800 text-center mb-1 font-medium"
+					>Botify saves 40 hours per employee on onboarding.</span
+				>
+			</div>
+			<div class="flex-1 flex flex-col items-center px-6 border-b md:border-b-0 md:border-r border-blue-100 last:border-none">
+				<span class="text-4xl md:text-5xl font-bold text-blue-600 mb-2"
+					>25%</span
+				>
+				<span class="text-base text-gray-800 text-center mb-1 font-medium"
+					>Botify Chat reduces internal support requests by 25% (IT, HR, etc.).</span
+				>
+			</div>
+			<div class="flex-1 flex flex-col items-center px-6">
+				<span class="text-4xl md:text-5xl font-bold text-blue-600 mb-2"
+					>4 months</span
+				>
+				<span class="text-base text-gray-800 text-center mb-1 font-medium"
+					>Companies recover their Botify investment in under 4 months.</span
+				>
+			</div>
+		</div>
+		<a
+			href="#"
+			class="mt-10 flex items-center gap-2 text-blue-600 font-medium text-lg hover:underline transition"
+			style="font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif';"
+		>
+			Botify in action
+			<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100">
+				<svg
+					class="w-4 h-4 text-blue-600"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M9 5l7 7-7 7"
+					/>
+				</svg>
+			</span>
+		</a>
+	</section>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+		rel="stylesheet"
+	/>
 </Page>
