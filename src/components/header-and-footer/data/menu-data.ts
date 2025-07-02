@@ -46,6 +46,10 @@ export const menuData: MenuItem[] = [
   {
     name: "Blog",
     href: "/blog"
+  },
+  {
+    name: "Careers",
+    href: "/careers"
   }
 ];
 
