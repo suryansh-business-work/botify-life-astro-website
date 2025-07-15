@@ -7,4 +7,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 4322,
+    host: true
+  }
 });
