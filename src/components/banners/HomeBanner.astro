@@ -6,25 +6,6 @@ import HomeBannerSVG from "./HomeBannerSVG.astro";
   class="w-screen min-h-[80vh] p-20 px-5 group"
   style="background: linear-gradient(135deg, #f6fafd 0%, #eaf1fb 60%, #e0e7ff 100%); position: relative; overflow: hidden;"
 >
-  <!-- Hover animated gradient glow effect -->
-  <span
-    class="effect-gradient pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:visible group-hover:opacity-100 transition-all duration-700"
-    style="
-      background-image: linear-gradient(136deg, rgb(135, 108, 255), rgb(154, 221, 255));
-      aspect-ratio: 1 / 1;
-      border-radius: 100%;
-      display: block;
-      filter: blur(100px);
-      margin: auto;
-      position: absolute;
-      transform: translate(-50%, -50%) scale(1);
-      width: clamp(300px, 75%, 800px);
-      height: auto;
-      z-index: 0;
-      animation: glow-move 5s cubic-bezier(.4,0,.2,1) infinite alternate;
-      transition: opacity 0.5s, visibility 0.5s;
-    "
-  ></span>
   <style>
     @keyframes glow-move {
       0% {
@@ -133,7 +114,12 @@ import HomeBannerSVG from "./HomeBannerSVG.astro";
       </div>
     </div>
     <div class="w-full flex justify-center items-start mb-8 relative z-20">
-      <HomeBannerSVG />
+      <img
+        src="https://ik.imagekit.io/esdata1/sibera/website/Chatbot.svg?updatedAt=1713627765282"
+        alt="Chatbot Illustration"
+        class="max-w-full h-auto"
+        loading="lazy"
+      />
     </div>
   </div>
 </section>
