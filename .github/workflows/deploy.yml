@@ -1,4 +1,4 @@
-name: botify-life Astro.js Website using docker and GitHub Actions
+name: botify-life Astro.js Website
 
 on:
   push:
