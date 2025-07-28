@@ -50,3 +50,15 @@ const {
 		height: 100%;
 	}
 </style>
+
+<script>
+  (function() {
+	var script = document.createElement('script');
+	var isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+	script.src = isLocalhost
+	  ? 'http://localhost:4001/static/embed/botify-chat.js'
+	  : 'https://botify.exyconn.com/static/embed/botify-chat.js';
+	script.async = true;
+	document.body.appendChild(script);
+  })();
+</script>
